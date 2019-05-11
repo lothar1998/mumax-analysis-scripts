@@ -1,0 +1,48 @@
+{
+	"name": "Spin Wave Plots",
+	"description": "Ploting magnetisation",
+	"specification": [
+	{
+		"name": "directory",
+		"short": "d",
+		"help": "directory to be investigated",
+		"type": "str"
+	},
+	{
+		"name": "magnetisation",
+		"short": "m",
+		"help": "which component of magnetisation to take? Mx, My, Mz",
+		"type": "str"
+	},
+	{
+		"name": "component",
+		"short": "c",
+		"help": "which direction of magnetisation to take? x, y, z",
+		"type": "str"
+	},
+	{
+		"name": "xshift",
+		"short": "x",
+		"help": "shift in x nodes",
+		"type": "int"
+	},	
+	{
+		"name": "yshift",
+		"short": "y",
+		"help": "shift in y nodes",
+		"type": "int"
+	},
+	{
+		"name": "yshift",
+		"short": "y",
+		"help": "shift in y nodes",
+		"type": "int"
+	},
+	{
+		"name": "help",
+		"short": "h",
+		"help": "show hints",
+		"type": "None"
+	}
+	]
+}
