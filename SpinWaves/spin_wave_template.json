@@ -3,9 +3,9 @@
 	"description": "Ploting magnetisation",
 	"specification": [
 	{
-		"name": "directory",
-		"short": "d",
-		"help": "directory to be investigated",
+		"name": "file",
+		"short": "f",
+		"help": "filename to be investigated",
 		"type": "str"
 	},
 	{
@@ -15,8 +15,8 @@
 		"type": "str"
 	},
 	{
-		"name": "component",
-		"short": "c",
+		"name": "direction",
+		"short": "d",
 		"help": "which direction of magnetisation to take? x, y, z",
 		"type": "str"
 	},
