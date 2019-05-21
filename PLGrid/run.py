@@ -24,7 +24,7 @@ class Run:
         self.script = temp.split("\n")
         temp_h.close()
 
-        temp_h = open(self.file_name + self.file_extension)
+        temp_h = open(self.localization + self.file_name + self.file_extension)
         self.file = list(temp_h.read().split("\n"))
         temp_h.close()
 
