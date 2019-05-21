@@ -4,6 +4,7 @@ import struct
 import sys
 import json
 
+
 class SpinWaves:
     def __init__(self, filename):
         self.filename = filename
@@ -118,6 +119,7 @@ if __name__ == "__main__":
                 print(i['Name'] + '\t\t(-' + i['Short'] + ') - ' + i['Help'])
             exit()
 
+    directory = ""
     slice_x = 0
     slice_y = 0
     slice_z = 0
