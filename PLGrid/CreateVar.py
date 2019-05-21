@@ -1,5 +1,6 @@
 import sys
 import json
+import numpy as np
 
 
 class Variation:
@@ -33,7 +34,7 @@ class Variation:
 
     def change(self, line, new_line, start_value, stop_value, step_value):
         k = 0
-        for i in range(start_value, stop_value, step_value):
+        for i in np.arange(start_value, stop_value, step_value):
 
             new_script = open(self.localization + self.script_name + "_" + self.file_name + "_" + str(k) + self.script_extension, "w")
             temp = self.script.copy()
@@ -98,19 +99,19 @@ if __name__ == "__main__":
         into = arg[arg.index('--' + json_values[3]['Name']) + 1]
 
     if '-' + json_values[4]['Short'] in arg:
-        start_value = int(arg[arg.index('-' + json_values[4]['Short']) + 1])
+        start_value = float(arg[arg.index('-' + json_values[4]['Short']) + 1])
     elif '--' + json_values[4]['Name'] in arg:
-        start_value = int(arg[arg.index('--' + json_values[4]['Name']) + 1])
+        start_value = float(arg[arg.index('--' + json_values[4]['Name']) + 1])
 
     if '-' + json_values[5]['Short'] in arg:
-        stop_value = int(arg[arg.index('-' + json_values[5]['Short']) + 1])
+        stop_value = float(arg[arg.index('-' + json_values[5]['Short']) + 1])
     elif '--' + json_values[5]['Name'] in arg:
-        stop_value = int(arg[arg.index('--' + json_values[5]['Name']) + 1])
+        stop_value = float(arg[arg.index('--' + json_values[5]['Name']) + 1])
 
     if '-' + json_values[6]['Short'] in arg:
-        step_value = int(arg[arg.index('-' + json_values[6]['Short']) + 1])
+        step_value = float(arg[arg.index('-' + json_values[6]['Short']) + 1])
     elif '--' + json_values[6]['Name'] in arg:
-        step_value = int(arg[arg.index('--' + json_values[6]['Name']) + 1])
+        step_value = float(arg[arg.index('--' + json_values[6]['Name']) + 1])
 
     variation = Variation("sbatch_script_template.json", filename)
 
