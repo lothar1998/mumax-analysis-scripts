@@ -1,0 +1,48 @@
+{
+  "name": "run_template",
+  "description": "template to run.py",
+  "specification": [
+    {
+      "name": "help",
+      "short": "h",
+      "help": "show hints",
+      "type": "None"
+    },
+    {
+      "name": "file",
+      "short": "f",
+      "help": "filename of mx3 file to edition",
+      "type": "str"
+    },
+    {
+      "name": "line",
+      "short": "l",
+      "help": "line to change in \"\"",
+      "type": "str"
+    },
+    {
+      "name": "into",
+      "short": "i",
+      "help": "template of new line in \"\" (value to edition should be expressed as '*' mark)",
+      "type": "str"
+    },
+    {
+      "name": "start",
+      "short": "b",
+      "help": "start value of *",
+      "type": "int"
+    },
+    {
+      "name": "stop",
+      "short": "e",
+      "help": "stop value of *",
+      "type": "int"
+    },
+    {
+      "name": "step",
+      "short": "s",
+      "help": "step value of *",
+      "type": "int"
+    }
+  ]
+}
