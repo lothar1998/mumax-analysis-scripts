@@ -1,6 +1,6 @@
 {
-  "name": "run_template",
-  "description": "template to run.py",
+  "name": "run.py",
+  "description": "create variations of mx3 file and sbatch scripts for them",
   "specification": [
     {
       "name": "help",
