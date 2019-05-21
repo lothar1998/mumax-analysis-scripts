@@ -43,6 +43,12 @@
 		"short": "h",
 		"help": "show hints",
 		"type": "None"
+	},
+	{
+		"name": "write",
+		"short": "w",
+		"help": "write data to txt file",
+		"type": "None"
 	}
 	]
 }

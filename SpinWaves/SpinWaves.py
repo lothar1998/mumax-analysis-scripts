@@ -46,57 +46,90 @@ class SpinWaves:
                         self.data[j, i, k, 1] = struct.unpack('f', binaryFile.read(4))[0]
                         self.data[j, i, k, 2] = struct.unpack('f', binaryFile.read(4))[0]
 
-    def plot(self, dimension, slice_x, slice_y, slice_z, value_name):
+    def prepare_data(self, direction, slice_x, slice_y, slice_z):
 
         values = None
+        start = None
+        stop = None
+        step = None
 
-        if dimension == 'x':
+        if direction == 'x':
             if value_name == 'Mx':
                 values = self.data[0:, slice_y, slice_z, 0]
             elif value_name == 'My':
                 values = self.data[0:, slice_y, slice_z, 1]
             elif value_name == 'Mz':
-                values = self.data[0:, slice_y, slice_z, 3]
+                values = self.data[0:, slice_y, slice_z, 2]
 
-            mp.xlabel(dimension)
-            mp.ylabel(value_name)
             start = float(self.info_values.get("xmin")[0])
             step = float(self.info_values.get("xstepsize")[0])
             stop = float(self.info_values.get("xmax")[0])
-            mp.plot(np.arange(start, stop, step), values)
 
-        elif dimension == 'y':
+        elif direction == 'y':
             if value_name == 'Mx':
                 values = self.data[slice_x, 0:, slice_z, 0]
             elif value_name == 'My':
                 values = self.data[slice_x, 0:, slice_z, 1]
             elif value_name == 'Mz':
-                values = self.data[slice_x:, 0:, slice_z, 3]
+                values = self.data[slice_x, 0:, slice_z, 2]
 
-            mp.xlabel(dimension)
-            mp.ylabel(value_name)
             start = float(self.info_values.get("ymin")[0])
             step = float(self.info_values.get("ystepsize")[0])
             stop = float(self.info_values.get("ymax")[0])
-            mp.plot(np.arange(start, stop, step), values)
 
-        elif dimension == 'z':
+        elif direction == 'z':
             if value_name == 'Mx':
                 values = self.data[slice_x, slice_y, 0:, 0]
             elif value_name == 'My':
                 values = self.data[slice_x, slice_y, 0:, 1]
             elif value_name == 'Mz':
-                values = self.data[slice_x, slice_y, 0:, 3]
+                values = self.data[slice_x, slice_y, 0:, 2]
 
-            mp.xlabel(dimension)
-            mp.ylabel(value_name)
             start = float(self.info_values.get("zmin")[0])
             step = float(self.info_values.get("zstepsize")[0])
             stop = float(self.info_values.get("zmax")[0])
-            mp.plot(np.arange(start, stop, step), values)
+
+        domain = np.arange(start, stop, step)
+
+        return values, domain
+
+    def plot(self, direction, slice_x, slice_y, slice_z, value_name):
+
+        [values, domain] = self.prepare_data(direction, slice_x, slice_y, slice_z)
+
+        if direction == 'x':
+
+            mp.xlabel(direction)
+            mp.ylabel(value_name)
+            mp.plot(domain, values)
+
+        elif direction == 'y':
+
+            mp.xlabel(direction)
+            mp.ylabel(value_name)
+            mp.plot(domain, values)
+
+        elif direction == 'z':
+
+            mp.xlabel(direction)
+            mp.ylabel(value_name)
+            mp.plot(domain, values)
 
         mp.ylim([-1.2, 1.2])
         mp.show()
+
+    def write_to_file(self, direction, slice_x, slice_y, slice_z, value_name, file_name):
+
+        [values, domain] = self.prepare_data(direction, slice_x, slice_y, slice_z)
+
+        file = open(str(file_name+"_"+direction+"_"+value_name + ".txt"), "w")
+
+        file.write(str(direction+"\t"+value_name+"\n"))
+
+        for i in range(len(domain)):
+            file.write(str(domain[i]) + "\t" + str(values[i]) + "\n")
+
+        file.close()
 
 
 if __name__ == "__main__":
@@ -160,4 +193,8 @@ if __name__ == "__main__":
 
     wave = SpinWaves(directory)
     wave.read_file()
-    wave.plot(direction, slice_x, slice_y, slice_z, value_name)
+
+    if '-' + json_values[7]['Short'] in arg or '--' + json_values[7]['Name'] in arg:
+        wave.write_to_file(direction, slice_x, slice_y, slice_z, value_name, directory[directory.rfind('\\')+1:directory.rfind('.')])
+    else:
+        wave.plot(direction, slice_x, slice_y, slice_z, value_name)
