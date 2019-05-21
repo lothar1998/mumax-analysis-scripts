@@ -6,7 +6,7 @@ class Run:
     def __init__(self, script_json, file_name):
         self.script_json = script_json
 
-        self.file_name = file_name[file_name.rfind("\\")+1:file_name.rfind(".")]
+        self.file_name = file_name[file_name.rfind("/")+1:file_name.rfind(".")]
         self.file_extension = file_name[file_name.rfind("."):]
 
         self.script = list()
@@ -15,7 +15,7 @@ class Run:
         temp_h = open(self.script_json)
         json_temp = json.load(temp_h)
         temp = json_temp['name']
-        self.script_name = temp[temp.rfind("\\")+1:temp.rfind(".")]
+        self.script_name = temp[temp.rfind("/")+1:temp.rfind(".")]
         self.script_extension = temp[temp.rfind("."):]
         temp = json_temp['specification']
         self.script = temp.split("\n")
