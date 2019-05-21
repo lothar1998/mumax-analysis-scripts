@@ -1,0 +1,5 @@
+{
+  "name": "skrypt.sh",
+  "description": "template of sbatch script for mumax3",
+  "specification": "#!/bin/bash\n#SBATCH -J\n#SBATCH --time=1:00:00\n#SBATCH --gres=gpu:1\n#SBATCH -A grant010gpu\n#SBATCH -p plgrid-gpu\n#SBATCH --output=\"_output.txt\"\n#SBATCH --error=\"_error.txt\"\ndate\nmodule add plgrid/apps/mumax/3.9.3\nmumax3\ndate"
+}
