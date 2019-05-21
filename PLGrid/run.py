@@ -35,7 +35,7 @@ class Run:
         k = 0
         for i in range(start_value, stop_value, step_value):
 
-            new_script = open(self.script_name + "_" + self.file_name + "_" + str(k) + self.script_extension, "w")
+            new_script = open(self.localization + self.script_name + "_" + self.file_name + "_" + str(k) + self.script_extension, "w")
             temp = self.script.copy()
             temp[temp.index("#SBATCH -J")] = "#SBATCH -J " + self.file_name + "_" + str(k)
             temp[temp.index("#SBATCH --output=\"_output.txt\"")] = "#SBATCH --output=" + "\"" + self.file_name + "_" + str(k) + "_" + "output.txt" + "\""
@@ -45,7 +45,7 @@ class Run:
                 new_script.write(j + "\n")
             new_script.close()
 
-            new_file = open(self.file_name + "_" + str(k) + self.file_extension, "w")
+            new_file = open(self.localization + self.file_name + "_" + str(k) + self.file_extension, "w")
             temp = self.file.copy()
             temp[temp.index(line)] = new_line.replace('*', str(i))
             for j in temp:
