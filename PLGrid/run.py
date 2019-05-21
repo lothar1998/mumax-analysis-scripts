@@ -4,9 +4,12 @@ import json
 
 class Run:
     def __init__(self, script_json, file_name):
+
+        self.localization = file_name[0:file_name.rfind("/")+1]
+
         self.script_json = script_json
 
-        self.file_name = file_name[0:file_name.rfind(".")]
+        self.file_name = file_name[file_name.rfind("/")+1:file_name.rfind(".")]
         self.file_extension = file_name[file_name.rfind("."):]
 
         self.script = list()
