@@ -2,7 +2,7 @@ import sys
 import json
 
 
-class Run:
+class Variation:
     def __init__(self, script_json, file_name):
 
         self.localization = file_name[0:file_name.rfind("/")+1]
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     print(arg)
     json_values = []
 
-    with open('run_template.json') as json_file:
+    with open('create_var_template.json') as json_file:
         data = json.load(json_file)
 
         for i in data['specification']:
@@ -112,11 +112,11 @@ if __name__ == "__main__":
     elif '--' + json_values[6]['Name'] in arg:
         step_value = int(arg[arg.index('--' + json_values[6]['Name']) + 1])
 
-    run = Run("sbatch_script_template.json", filename)
+    variation = Variation("sbatch_script_template.json", filename)
 
     if stop_value is None or step_value is None:
         step_value = start_value
         stop_value = start_value * 2
 
-    run.change(line, into, start_value, stop_value, step_value)
+    variation.change(line, into, start_value, stop_value, step_value)
 
