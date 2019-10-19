@@ -1,0 +1,36 @@
+{
+	"name": "Amplitude computation",
+	"description": "compute amplitude of tunneling wave",
+	"specification": [
+	{
+		"name": "m0",
+		"short": "m0",
+		"help": "m0 should be less or equal 1",
+		"type": "double"
+	},
+	{
+		"name": "J0",
+		"short": "j0",
+		"help": "j0",
+		"type": "double"
+	},
+	{
+		"name": "hk",
+		"short": "hk",
+		"help": "hk",
+		"type": "double"
+	},
+	{
+		"name": "omega",
+		"short": "w",
+		"help": "omega",
+		"type": "double"
+	},
+	{
+		"name": "help",
+		"short": "h",
+		"help": "show hints",
+		"type": "None"
+	}
+    ]
+}

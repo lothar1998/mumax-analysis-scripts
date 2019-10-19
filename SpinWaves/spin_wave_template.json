@@ -1,6 +1,6 @@
 {
 	"name": "Spin Wave Plots",
-	"description": "Ploting magnetisation",
+	"description": "Plotting magnetisation",
 	"specification": [
 	{
 		"name": "file",
