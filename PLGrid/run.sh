@@ -1,13 +1,32 @@
 #!/bin/bash
 
 curr=$(pwd)
-path="$1/*.sh"
 
-cd $1
+if [ $1 = "-r" ]
+then	
 
-for filename in $path
-do
-	sbatch $filename
-done
+	echo "no. 1"
 
-cd $curr
+	listOfScripts=$(find $2 -name '*.sh')
+
+	for filename in $listOfScripts
+	do
+		sbatch $filename
+	done
+
+else
+	echo "no. 2"
+	
+	path="$1/*.sh"
+
+	cd $1
+
+	for filename in $path
+	do
+		sbatch $filename
+	done
+
+	cd $curr
+
+fi
+
