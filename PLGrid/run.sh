@@ -1,11 +1,7 @@
 #!/bin/bash
 
-curr=$(pwd)
-
 if [ $1 = "-r" ]
 then	
-
-	echo "no. 1"
 
 	listOfScripts=$(find $2 -name '*.sh')
 
@@ -15,8 +11,8 @@ then
 	done
 
 else
-	echo "no. 2"
-	
+
+	curr=$(pwd)	
 	path="$1/*.sh"
 
 	cd $1
