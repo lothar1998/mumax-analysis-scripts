@@ -3,12 +3,29 @@
 if [ $1 = "-r" ]
 then	
 
-	listOfScripts=$(find $2 -name '*.sh')
+	runned=0
 
-	for filename in $listOfScripts
+	directories=$(find $2 -name '*.sh' | sed -r 's|/[^/]+$||' | sort | uniq)
+
+	for directory in $directories
 	do
-		sbatch $filename
+		filenames="$directory/*.sh"	
+		
+		curr=$(pwd)
+		
+		cd $dir
+
+		for filename in $filenames
+		do
+			sbatch $filename
+			runned=$((runned+1))
+		done
+		
+		cd $curr
+
 	done
+
+	echo "runned scripts: $runned"
 
 else
 
