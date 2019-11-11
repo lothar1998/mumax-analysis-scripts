@@ -13,7 +13,7 @@ then
 		
 		curr=$(pwd)
 		
-		cd $dir
+		cd $directory
 
 		for filename in $filenames
 		do
